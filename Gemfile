@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Devise
 gem 'devise'
 
+# PaperClip
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
