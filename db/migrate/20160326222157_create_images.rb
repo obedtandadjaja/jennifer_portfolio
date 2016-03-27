@@ -6,7 +6,6 @@ class CreateImages < ActiveRecord::Migration
       t.boolean :is_primary, default: false
       t.string :url
       t.references :project, :null => true
-      t.references :user, :null => true
       t.timestamps null: false
     end
   end
