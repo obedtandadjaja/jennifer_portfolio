@@ -115,7 +115,8 @@ function Masonry() {
      
        $container.imagesLoaded( function(){
          $container.masonry({
-           itemSelector : 'li'
+           itemSelector : 'li',
+           gutter: 30
          });
        });
 }
