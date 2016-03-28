@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col m8 s12 offset-m2">
+            <div class="card">
+                <div class="card-content">
+                    <%= form_for @project, html:{class: "form-horizontal"} do |f| %>
+                        <div class="input-field">
+                            Title
+                            <%= f.text_field :title, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Subtitle
+                            <%= f.text_field :subtitle, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Desc Brief
+                            <%= f.text_area :description_brief, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Desc Long
+                            <%= f.text_area :description_long, class: 'validate', style: "height: 10em" %>
+                        </div>
+
+                        <div class="input-field">
+                            User
+                            <%= f.collection_select(:user_id, User.all, :id, :full_name, {:class => 'validate chosen-select'}) %>
+                        </div>
+
+                        <div class="input-field">
+                            Images
+                            <%= f.file_field(:image, :multiple => true) %>
+                        </div>
+
+                        <div class="input-field">
+                            <%= f.submit "Submit", class: "btn btn-default" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
