@@ -1,7 +1,7 @@
-class CreateImages < ActiveRecord::Migration
+class CreateAttachments < ActiveRecord::Migration
   def change
-    create_table :images do |t|
-   	  t.string :title
+    create_table :attachments do |t|
+      t.string :title
    	  t.string :description
       t.boolean :is_primary, default: false
       t.string :url
