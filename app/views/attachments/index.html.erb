@@ -1,0 +1,15 @@
+<% @attachments.each do |attachment| %>
+	<div class="card">
+		<div class="card-content">
+			<div class="card-title"><%= attachment.title %></div>
+			<p>Url: <%= attachment.image.url %></p>
+			<p>Desc: <%= attachment.description %></p>
+			<p>File Name: <%= attachment.image_file_name %></p>
+			<p>File Size: <%= attachment.image_file_size %></p>
+			<p>Content type: <%= attachment.image_content_type %></p>
+			<p>Created at: <%= attachment.created_at %></p>
+			<p>Updated at: <%= attachment.updated_at %></p>
+			<%= image_tag attachment.image.url(:medium) %>
+		</div>
+	</div>
+<% end %>
