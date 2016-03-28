@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  get '/contact' => 'user#contact'
-  get '/about-me' => 'user#about_me'
+  get '/contact' => 'users#contact'
+  get '/about-me' => 'users#about_me'
 
   resources :users
   resources :attachments

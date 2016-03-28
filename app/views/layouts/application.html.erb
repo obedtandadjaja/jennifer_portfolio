@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+  <meta charset="utf-8">
+  <title>Jennifer Wiriawan's Portfolio</title>
+  <meta name="description" content="Jennifer Wiriawan's Portfolio ">
+  <meta name="keywords" content="clean, simplicity, theme, html5, sidebar, masonry">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="obedtandadjaja.com">
+  <link rel="icon" type="image/png" href="images/icon.png" />
+
   <title>Jennifer Wiriawan's Portfolio</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <%= yield :css %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
@@ -19,15 +28,30 @@
 <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<%= debug(params) if Rails.env.development? %>
-
-<%= yield %>
+<!-- <%= debug(params) if Rails.env.development? %> -->
 
 <script>
-	$(document).ready(function() {
-	    $('select').material_select();
-	});
+$(document).ready(function(){
+  $('select').material_select();
+});
 </script>
+<%= yield %>
+
+<!-- Footer -->
+<footer id="ajax-footer">
+  <div class="footer-margin">
+    <div class="social-footer">
+      <a href="https://www.facebook.com/thomsooncom"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.behance.net/TomaszMazurczak"><i class="fa fa-behance"></i></a>
+    </div>
+    <div class="copyright">© Copyright 2015 Thomsoon.com. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- Script -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<%= yield :script %>
 
 </body>
 </html>

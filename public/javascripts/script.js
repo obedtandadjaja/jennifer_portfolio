@@ -13,7 +13,6 @@ Load Page
 		waitForAll: true
 	});
 
-
 /*-------------------------------------------
 Ajax link page transitions
 ---------------------------------------------*/
@@ -240,7 +239,5 @@ function showPreloader() {
 function hidePreloader() {
   $(".preloader").delay(2000).fadeOut("slow");
 }
-
-
 
 })//End
