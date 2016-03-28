@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
 	belongs_to :user
-	has_many :image
+	has_many :attachment
 end
