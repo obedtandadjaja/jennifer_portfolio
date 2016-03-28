@@ -50,7 +50,13 @@
     <ul class="portfolio-grid">
       <% @projects.each do |project| %>
       <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+        <% if project.attachment.where(is_primary: true).first %>
+        <%= image_tag project.attachment.where(is_primary: true).first.image.url %>
+        <% elsif project.attachment.first %>
         <%= image_tag project.attachment.first.image.url %>
+        <% else %>
+        <%= image_tag 'portfolio/1.jpg' %>
+        <% end %>
           <a class="ajax-link" href="single.html">
             <div class="grid-hover">
               <h1><%= project.title %></h1>
