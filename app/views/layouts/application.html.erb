@@ -11,13 +11,12 @@
   <link rel="icon" type="image/png" href="images/icon.png" />
 
   <title>Jennifer Wiriawan's Portfolio</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= yield :css %>
   <%= csrf_meta_tags %>
 
-  <% if current_user %>
+  <% if @admin_page %>
   <style>
     html, body {
       background-color: #eceff1;
@@ -25,52 +24,71 @@
     .card {
       margin: 70px 0 70px 0;
     }
+    .alert {
+      padding: 8px 35px 8px 14px;
+      margin-bottom: 18px;
+      color: #c09853;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+      background-color: #fcf8e3;
+      border: 1px solid #fbeed5;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+    }
+    .alert-info {
+      color: #3a87ad;
+      background-color: #d9edf7;
+      border-color: #bce8f1;
+    }
   </style>
   <% end %>
 
 </head>
 <body>
 
-<% if current_user %>
-<nav>
-  <div class="nav-wrapper blue-grey lighten-2">
-    <div class="container">
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="left hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
-          <% if current_user %>
-          <li><%= link_to "Logout", '/logout', method: 'delete' %></li>
-          <% end %>
-      </ul>
-      <ul class="right hide-on-med-and-down" style="margin-right: 15px">
-          <% if current_user %>
-          <%= link_to current_user.full_name, controller: "users", action: "show", id: current_user.id %>
-          <% end %>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-          <li><a href="/">Home</a></li>
-          <% if current_user %>
-          <li><%= link_to "Profile", controller: "users", action: "show", id: current_user.id %></li>
-          <li><%= link_to "Logout", '/users/sign_out', method: 'delete' %></li>
-          <% end %>
-      </ul>
+<% if @admin_page %>
+  <nav>
+    <div class="nav-wrapper blue-grey lighten-2">
+      <div class="container">
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="left hide-on-med-and-down">
+            <li><%= link_to "Home", '/' %></li>
+            <% if current_user %>
+            <li><%= link_to "Admin Page", '/admin' %></li>
+            <li><%= link_to "Logout", '/logout', method: 'delete' %></li>
+            <% end %>
+        </ul>
+        <ul class="right hide-on-med-and-down" style="margin-right: 15px">
+            <% if current_user %>
+            <%= link_to current_user.full_name, controller: "users", action: "show", id: current_user.id %>
+            <% end %>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><%= link_to "Home", '/' %></li>
+            <% if current_user %>
+            <li><%= link_to "Profile", controller: "users", action: "show", id: current_user.id %></li>
+            <li><%= link_to "Logout", '/users/sign_out', method: 'delete' %></li>
+            <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<!-- Flash Messages -->
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+  <!-- Flash Messages -->
+  <% flash.each do |key, value| %>
+    <div class="alert alert-info">
+      <div class="container">
+      <%= value %>
+      <a class="right" href="#"><i class="material-icons">done_all</i></a>
+      </div>
+    </div>
+  <% end %>
 
 <% end %>
 
 <%= yield %>
 
-<% if current_user %>
+<% if @admin_page %>
 <!-- Footer -->
 <footer class="page-footer blue-grey lighten-2">
   <div class="container">
@@ -116,11 +134,14 @@
 <% end %>
 
 <!-- Script -->
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script>
 $(document).ready(function(){
   $('select').material_select();
+  $('.alert a').click(function()
+  {
+    $('.alert').remove();
+  });
 });
 </script>
 <%= yield :script %>

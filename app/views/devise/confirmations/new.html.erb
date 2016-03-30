@@ -3,8 +3,11 @@
   	<%= devise_error_messages! %>
     <div class="col m8 s12 offset-m2">
       <div class="card">
+      	<div class="card-image">
+			<img src="/images/card-image.jpg">
+      		<span class="card-title white-text">Resend confirmations instructions</span>
+		</div>
         <div class="card-content">
-        <span class="card-title">Resend confirmations instructions</span>
 
 		<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f| %>
 		  <div class="input-field">

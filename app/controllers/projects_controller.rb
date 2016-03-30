@@ -1,5 +1,10 @@
 class ProjectsController < ApplicationController
 	before_action :authenticate_user!, :except => [:show, :index]
+	before_filter :set_admin_page, :except => [:show, :index]
+
+	def set_admin_page
+		@admin_page = true
+	end
 
 	def index
 		@projects = Project.all

@@ -1,9 +1,12 @@
 <div class="container">
     <div class="row">
-        <div class="col m8 s12 offset-m2">
+        <div class="col l12 m8 s12 offset-m2">
             <div class="card">
+            	<div class="card-image">
+					<img src="/images/card-image.jpg">
+		      		<span class="card-title white-text">Forgot your password?</span>
+				</div>
                 <div class="card-content">
-                	<span class="card-title">Forgot your password?</span>
 					<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 					  <%= devise_error_messages! %>
 

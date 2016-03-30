@@ -1,0 +1,16 @@
+<% content_for :css do %>
+<style>
+html, body {
+	background-color: #607d8b;
+}
+</style>
+<% end %>
+
+<div class="container white-text center">
+	<p>Title: <%= @attachment.title ? @attachment.title : "Null" %></p>
+	<%= image_tag @attachment.image.url %>
+	<p>Desc: <%= @attachment.description ? @attachment.description : "Null" %></p>
+	<p>File Name: <%= @attachment.image_file_name %></p>
+	<p>File Size: <%= @attachment.image_file_size %> bytes</p>
+	<p>Content type: <%= @attachment.image_content_type %></p>
+</div>
