@@ -17,8 +17,46 @@
   <%= yield :css %>
   <%= csrf_meta_tags %>
 
+  <% if current_user %>
+  <style>
+    html, body {
+      background-color: #eceff1;
+    }
+    .card {
+      margin: 70px 0 70px 0;
+    }
+  </style>
+  <% end %>
+
 </head>
 <body>
+
+<% if current_user %>
+<nav>
+  <div class="nav-wrapper blue-grey lighten-2">
+    <div class="container">
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="left hide-on-med-and-down">
+          <li><a href="/">Home</a></li>
+          <% if current_user %>
+          <li><%= link_to "Logout", '/logout', method: 'delete' %></li>
+          <% end %>
+      </ul>
+      <ul class="right hide-on-med-and-down" style="margin-right: 15px">
+          <% if current_user %>
+          <%= link_to current_user.full_name, controller: "users", action: "show", id: current_user.id %>
+          <% end %>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+          <li><a href="/">Home</a></li>
+          <% if current_user %>
+          <li><%= link_to "Profile", controller: "users", action: "show", id: current_user.id %></li>
+          <li><%= link_to "Logout", '/users/sign_out', method: 'delete' %></li>
+          <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
@@ -28,20 +66,54 @@
 <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<!-- <%= debug(params) if Rails.env.development? %> -->
+<% end %>
 
 <%= yield %>
 
+<% if current_user %>
 <!-- Footer -->
-<footer id="ajax-footer">
-  <div class="footer-margin">
-    <div class="social-footer">
-      <a href="https://www.facebook.com/thomsooncom"><i class="fa fa-facebook"></i></a>
-      <a href="https://www.behance.net/TomaszMazurczak"><i class="fa fa-behance"></i></a>
+<footer class="page-footer blue-grey lighten-2">
+  <div class="container">
+    <div class="row">
+      <div class="col l3 m6 s12">
+        <h5 class="white-text">Projects</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/projects">See all projects</a></li>
+          <li><a class="grey-text text-lighten-3" href="/projects/new">Add a project</a></li>
+        </ul>
+      </div>
+      <div class="col l3 m6 s12">
+        <h5 class="white-text">Attachments</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/attachments">See all attachments</a></li>
+          <li><a class="grey-text text-lighten-3" href="/attachments/new">Add an attachment</a></li>
+        </ul>
+      </div>
+      <div class="col l3 m6 s12">
+        <h5 class="white-text">Profile</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/users/1">See Profile</a></li>
+          <li><a class="grey-text text-lighten-3" href="/users/1/edit">Edit Profile</a></li>
+        </ul>
+      </div>
+      <div class="col l3 m6 s12">
+        <h5 class="white-text">Other links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="/">Home page</a></li>
+          <li><a class="grey-text text-lighten-3" href="/contact">Contact</a></li>
+          <li><a class="grey-text text-lighten-3" href="/about-me">About me</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="copyright">© Copyright 2015 Thomsoon.com. All Rights Reserved.</div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2016 Jennifer Wiriawan and Obed Tandadjaja
+    <a class="grey-text text-lighten-4 right" href="#!">Jennifer Wiriawan Portfolio</a>
+    </div>
   </div>
 </footer>
+<% end %>
 
 <!-- Script -->
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

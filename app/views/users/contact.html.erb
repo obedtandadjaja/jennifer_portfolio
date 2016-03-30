@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="stylesheets/reset.css">
   <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="stylesheets/style-responsive.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <% end %>
 
 <!--Preloader-->
@@ -51,29 +51,24 @@
         <div class="text-intro">
 
           <h1>Contact</h1>
-          <p>To contact us please use the contact form visible. When sending files, please use the following e-mail</p>
+          <p>To contact me please use the contact form below. You can also contact me through my email: <a><%= @user.email %></a></p>
 
           <form method="post" action="?" data-jkit="[form:validateonly=true]">
           
-          <div class="col l4">
-            <p>
+          <div class="row">
+            <p class="col l5 m12 s12">
               <label for="miniusername">Full name:</label><br />
-              <input name="miniusername" id="miniusername" data-jkit="[validate:required=true;min=3;max=10;error=Please enter your username (3-10 characters)]">
+              <input class="col s12" name="miniusername" id="miniusername" data-jkit="[validate:required=true;min=5;max=30;error=Please enter your full name (5-30 characters)]">
             </p>
-          </div>  
-          
-          <div class="col l4">
-            <p>
+            <p class="col l5 m12 s12">
               <label for="miniemail">E-mail:</label><br />
-              <input name="miniemail" id="miniemail" data-jkit="[validate:required=true;strength=50;error=Please write your email]">
+              <input class="col s12" name="miniemail" id="miniemail" data-jkit="[validate:required=true;strength=50;error=Please enter your email]">
             </p>
-          </div>  
-          
-          <div class="col l12">
-            <p>
-              <label>Message:</label><br />
-              <textarea id="message" name="message"></textarea><br/><br/>
-              
+          </div>
+          <div class="row">
+            <p class="col l10 m12 s12">
+              <label>Message:</label><br/>
+              <textarea id="message" name="message" data-jkit="[validate:required=true;error=Please write something]"></textarea><br/><br/>
               <input class="button-submit" name="send" type="submit" value="SUBMIT" />
             </p>
           </div>
