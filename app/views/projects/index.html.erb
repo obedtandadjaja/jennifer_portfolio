@@ -1,14 +1,57 @@
-<% @projects.each do |project| %>
-	<div class="card">
-		<div class="card-content">
-			<div class="card-title"><%= project.title %></div>
-			<p>Brief: <%= project.description_brief %></p>
-			<p>Long: <%= project.description_long %></p>
-			<p>Created at: <%= project.created_at %></p>
-			<p>Updated at: <%= project.updated_at %></p>
-			<% project.attachment.each do |image| %>
-				<%= image_tag image.image.url %>
-			<% end %>
-		</div>
+<% content_for :css do %>
+<style>
+	.col {
+	  display: inline;
+	  overflow:hidden;
+	  -webkit-transition: all 0.2s ease-in;
+	  -moz-transition: all 0.2s ease-in;
+	  -ms-transition: all 0.2s ease-in;
+	  -o-transition: all 0.2s ease-in;
+	  transition: all 0.2s ease-in;
+	}
+	.col:hover{
+	  opacity: 0.7;
+	}
+	.row {
+	  margin: 50px 0 50px 0;
+	}
+</style>
+<% end %>
+
+<div class="container">
+	<div class="row">
+	<% @projects.each do |project| %>
+	<div class="col l4 m6 s12 center tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= project.title %>: <%= project.description_brief %>">
+		<a class="ajax-link" href="/projects/<%= project.slug %>" style="height: inherit; width: inherit; overflow: hidden">
+	    	<% if project.attachment.where(is_primary: true).first %>
+	        <%= image_tag project.attachment.where(is_primary: true).first.image.url(:medium) %>
+	        <% elsif project.attachment.first %>
+	        <%= image_tag project.attachment.first.image.url(:medium) %>
+	        <% else %>
+	        <%= image_tag 'portfolio/1.jpg' %>
+	        <% end %>
+      	</a>
 	</div>
+	<% end %>
+	</div>
+</div>
+
+<% content_for :script do %>
+  <%= javascript_include_tag "masonry.pkgd.min.js" %>
+  <%= javascript_include_tag "imagesloaded.pkgd.min.js" %>
+  <script>
+  	function Masonry() {
+       var $container = $('.portfolio-grid');
+       $container.imagesLoaded( function(){
+         $container.masonry({
+           itemSelector : 'li',
+           gutter: 30
+         });
+       });
+	}
+	$(document).ready(function()
+	{
+		$('.tooltipped').tooltip({delay: 50});
+	});
+  </script>
 <% end %>

@@ -1,15 +1,51 @@
-<% @attachments.each do |attachment| %>
-	<div class="card">
-		<div class="card-content">
-			<div class="card-title"><%= attachment.title %></div>
-			<p>Url: <%= attachment.image.url %></p>
-			<p>Desc: <%= attachment.description %></p>
-			<p>File Name: <%= attachment.image_file_name %></p>
-			<p>File Size: <%= attachment.image_file_size %></p>
-			<p>Content type: <%= attachment.image_content_type %></p>
-			<p>Created at: <%= attachment.created_at %></p>
-			<p>Updated at: <%= attachment.updated_at %></p>
-			<%= image_tag attachment.image.url(:medium) %>
-		</div>
+<% content_for :css do %>
+<style>
+	.col {
+	  display: inline;
+	  overflow:hidden;
+	  -webkit-transition: all 0.2s ease-in;
+	  -moz-transition: all 0.2s ease-in;
+	  -ms-transition: all 0.2s ease-in;
+	  -o-transition: all 0.2s ease-in;
+	  transition: all 0.2s ease-in;
+	}
+	.col:hover{
+	  opacity: 0.7;
+	}
+	.row {
+	  margin: 50px 0 50px 0;
+	}
+</style>
+<% end %>
+
+<div class="container">
+	<div class="row">
+	<% @attachments.each do |attachment| %>
+	<div class="col l4 m6 s12 center tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= attachment.title %>: <%= attachment.description %>">
+		<a class="ajax-link" href="/attachments/<%= attachment.id %>" style="height: inherit; width: inherit; overflow: hidden">
+	    	<%= image_tag attachment.image.url(:medium) %>
+      	</a>
 	</div>
+	<% end %>
+	</div>
+</div>
+
+<% content_for :script do %>
+  <%= javascript_include_tag "masonry.pkgd.min.js" %>
+  <%= javascript_include_tag "imagesloaded.pkgd.min.js" %>
+  <script>
+  	function Masonry() {
+       var $container = $('.portfolio-grid');
+       $container.imagesLoaded( function(){
+         $container.masonry({
+           itemSelector : 'li',
+           gutter: 30
+         });
+       });
+	}
+	$(document).ready(function()
+	{
+		$('.tooltipped').tooltip({delay: 50});
+	});
+  </script>
 <% end %>

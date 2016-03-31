@@ -55,12 +55,12 @@
             <li><%= link_to "Home", '/' %></li>
             <% if current_user %>
             <li><%= link_to "Admin Page", '/admin' %></li>
-            <li><%= link_to "Logout", '/logout', method: 'delete' %></li>
             <% end %>
         </ul>
         <ul class="right hide-on-med-and-down" style="margin-right: 15px">
             <% if current_user %>
-            <%= link_to current_user.full_name, controller: "users", action: "show", id: current_user.id %>
+            <li><%= link_to current_user.full_name, controller: "users", action: "show", id: current_user.id %></li>
+            <li><%= link_to "Logout", '/logout', method: 'delete' %></li>
             <% end %>
         </ul>
         <ul class="side-nav" id="mobile-demo">
@@ -134,6 +134,7 @@
 <% end %>
 
 <!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script>
 $(document).ready(function(){

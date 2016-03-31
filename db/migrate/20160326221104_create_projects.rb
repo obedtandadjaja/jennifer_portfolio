@@ -5,6 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :subtitle
       t.string :description_brief
       t.string :description_long
+      t.string :slug, :unique => true
       t.references :user
       t.timestamps null: false
     end

@@ -28,6 +28,8 @@ gem 'devise'
 gem 'sweet-alert'
 # PaperClip
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+# Friendly-ID
+gem 'friendly_id', '~> 5.1.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

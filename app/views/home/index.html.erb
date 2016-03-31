@@ -1,9 +1,8 @@
 <% content_for :css do %>
 <!--Style-->
-
-  <link rel="stylesheet" href="stylesheets/reset.css">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/style-responsive.css">
+  <%= stylesheet_link_tag "reset" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "style-responsive" %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <% end %>
 
@@ -163,6 +162,17 @@
   </div>
 
   <div id="ajax-sidebar"></div>
+
+  <!--Footer-->
+  <footer>
+    <div class="footer-margin">
+      <div class="social-footer">
+        <a href="https://www.facebook.com/jennifer.wiriawan96"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.behance.net/jenniferwiriawan"><i class="fa fa-behance"></i></a>
+      </div>
+      <div class="copyright">© Copyright 2015 Jennifer Wiriawan and Obed Tandadjaja. All rights reserved.</div>
+    </div>
+  </footer>
 
 <% content_for :script do %>
 <!--Scripts-->

@@ -1,7 +1,8 @@
 <% content_for :css do %>
-  <link rel="stylesheet" href="stylesheets/reset.css">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/style-responsive.css">
+<!--Style-->
+  <%= stylesheet_link_tag "reset" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "style-responsive" %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <% end %>
 
@@ -15,44 +16,55 @@
 </div>
 
 <div class="opacity-nav">
-
-        <div class="menu-index" id="buttons" style="z-index:999999">
-        <i class="fa  fa-close"></i>
-        </div>
-
-    <ul class="menu-fullscreen">
-      <li><a class="ajax-link" href="/">Home</a></li>
-      <li><a class="ajax-link" href="/projects">Projects</a></li>
-      <li><a class="ajax-link" href="/about-me">About me</a></li>
-      <li><a class="ajax-link" href="/contact">Contact</a></li>
-    </ul>
-
+  <div class="menu-index" id="buttons" style="z-index:999999">
+    <i class="fa  fa-close"></i>
+  </div>
+  <ul class="menu-fullscreen">
+    <li><a class="ajax-link" href="index.html">Home</a></li>
+    <li><a class="ajax-link" href="projects.html">Projects</a></li>
+    <li><a class="ajax-link" href="about-us.html">About us</a></li>
+    <li><a class="ajax-link" href="contact.html">Contact</a></li>
+  </ul>
 </div>
+
 
   <!--Header-->
   <header id="fullscreen">
-      <div class="logo" id="full"><a class="ajax-link" href="index.html">JENNIFER WIRIAWAN</a></div>
-        <div class="menu-index" id="button">
-        <i class="fa fa-bars"></i>
-        </div>
+      <div class="logo" id="full"><a class="ajax-link" href="index.html">THOMSOON</a></div>
+      <div class="menu-index" id="button">
+      <i class="fa fa-bars"></i>
+      </div>
   </header>
+
   <div class="clear"></div>
 
   <!--Content-->
 
   <div class="content" id="ajax-content">
     <div class="text-intro">
-      <h1>About me</h1>
-      <div class="one-column">
-        <p><%= @user.occupation %></p>
-      </div>
-      <div class="two-column">
-        <p>
-            <%= raw @user.bio %>
-        </p>
-      </div>
+      <h1>Projects</h1>
+      <p>Please check my portfolio. All project is clean and simplicity modern style. You can buy this template.</p>
     </div>
-    <div class="clear"></div>
+
+
+  <!--Portfolio grid-->
+  <ul class="portfolio-grid">
+    <% @project.attachment.each do |attachment| %>
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+        <%= image_tag attachment.image.url(:medium) %>
+        <a class="ajax-link" href="/attachments/<%= attachment.id %>">
+          <div class="grid-hover">
+            <h1><%= attachment.title %></h1>
+            <p><%= attachment.description %></p>
+          </div>
+        </a>
+    </li>
+    <% end %>
+  </ul>
+
+</div>
+
+
 
   <!--Home Sidebar-->
 
@@ -68,6 +80,7 @@
       <div class="copyright">© Copyright 2015 Jennifer Wiriawan and Obed Tandadjaja. All rights reserved.</div>
     </div>
   </footer>
+
 
 <% content_for :script do %>
 <!--Scripts-->

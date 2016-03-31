@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-	before_action :authenticate_user!, :except => [:show, :index]
-	before_filter :set_admin_page, :except => [:show, :index]
+	before_action :authenticate_user!, :except => [:show]
+	before_filter :set_admin_page, :except => [:show]
 
 	def set_admin_page
 		@admin_page = true
@@ -8,10 +8,11 @@ class ProjectsController < ApplicationController
 
 	def index
 		@projects = Project.all
+		render '/projects/index'
 	end
 
 	def show
-		@projects = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 	end
 
 	def new
@@ -39,12 +40,13 @@ class ProjectsController < ApplicationController
 	end
 
 	def edit
-		@project = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 	end
 
 	def update
-		@project = Project.find(params[:id])
+		@project = Project.friendly.find(params[:id])
 	    if @project.update_attributes(project_params)
+	    	@project.slug = nil
 	    	# delete all attachments first and then readding them
 	    	@project.attachment.destroy_all
 	    	if params[:project]['image']
