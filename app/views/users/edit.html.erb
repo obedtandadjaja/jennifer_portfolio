@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col m8 s12 offset-m2">
+            <div class="card">
+                <div class="card-image">
+                    <img src="/images/card-image.jpg">
+                    <span class="card-title white-text">Edit <%= @user.full_name %></span>
+                </div>
+                <div class="card-content">
+                    <%= form_for @user, html:{class: "form-horizontal"} do |f| %>
+                        <div class="input-field">
+                            First name
+                            <%= f.text_field :first_name, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Last name
+                            <%= f.text_field :last_name, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Age
+                            <%= f.number_field :age, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Phone number
+                            <%= f.text_field :phone_number, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Occupation
+                            <%= f.text_field :occupation, class: 'validate' %>
+                        </div>
+
+                        <div class="input-field">
+                            Bio
+                            <%= f.text_area :bio, class: 'validate', style: "height: 10em" %>
+                        </div>
+
+                        <div class="input-field">
+                            Avatar
+                            <%= f.file_field(:avatar) %>
+                        </div>
+
+                        <div class="input-field">
+                            <%= f.submit "Submit", class: "btn btn-default" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

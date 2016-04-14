@@ -1,7 +1,7 @@
 <% content_for :css do %>
-  <link rel="stylesheet" href="stylesheets/reset.css">
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/style-responsive.css">
+  <%= stylesheet_link_tag "reset" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "style-responsive" %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <% end %>
 
@@ -31,7 +31,7 @@
 
   <!--Header-->
   <header id="fullscreen">
-      <div class="logo" id="full"><a class="ajax-link" href="index.html">JENNIFER WIRIAWAN</a></div>
+      <div class="logo" id="full"><a class="ajax-link" href="/">JENNIFER WIRIAWAN</a></div>
         <div class="menu-index" id="button">
         <i class="fa fa-bars"></i>
         </div>
@@ -39,12 +39,15 @@
   <div class="clear"></div>
 
   <!--Content-->
-
   <div class="content" id="ajax-content">
     <div class="text-intro">
       <h1>About me</h1>
+      <% if current_user %>
+      <a href="/users/jennifer-wiriawan/edit"><button class="btn right">Edit Profile</button></a>
+      <% end %>
       <div class="one-column">
         <p><%= @user.occupation %></p>
+        <%= image_tag @user.avatar.url(:medium) %>
       </div>
       <div class="two-column">
         <p>

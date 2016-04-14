@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col l12">
+            <div class="card">
+                <div class="card-image">
+                    <img src="/images/card-image.jpg">
+                    <span class="card-title white-text">Edit <%= @user.full_name %></span>
+                </div>
+                <div class="card-content">
+                    <div class="row">
+                        First name: <%= @user.first_name %>
+                    </div>
+
+                    <div class="row">
+                        Last name: <%= @user.last_name %>
+                    </div>
+
+                    <div class="row">
+                        Age: <%= @user.age %>
+                    </div>
+
+                    <div class="row">
+                        Phone number: <%= @user.phone_number %>
+                    </div>
+
+                    <div class="row">
+                        Occupation: <%= @user.occupation %>
+                    </div>
+
+                    <div class="row">
+                        Bio: <%= @user.bio %>
+                    </div>
+
+                    <div class="row">
+                        Avatar <br/>
+                        <%= image_tag @user.avatar.url(:medium) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

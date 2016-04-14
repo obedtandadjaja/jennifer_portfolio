@@ -57,5 +57,4 @@ class AttachmentsController < ApplicationController
 	def attachment_params
 		params.require(:attachment).permit(:image, :title, :description, :is_primary, :project_id)
 	end
-
 end
