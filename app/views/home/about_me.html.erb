@@ -42,9 +42,6 @@
   <div class="content" id="ajax-content">
     <div class="text-intro">
       <h1>About me</h1>
-      <% if current_user %>
-      <a href="/users/jennifer-wiriawan/edit"><button class="btn right">Edit Profile</button></a>
-      <% end %>
       <div class="one-column">
         <p><%= @user.occupation %></p>
         <%= image_tag @user.avatar.url(:medium) %>

@@ -28,6 +28,7 @@ gem 'devise'
 gem 'sweet-alert'
 # PaperClip
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk'
 # Friendly-ID
 gem 'friendly_id', '~> 5.1.0'
 # Use ActiveModel has_secure_password

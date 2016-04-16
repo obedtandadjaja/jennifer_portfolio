@@ -38,33 +38,38 @@
 
   <div class="clear"></div>
 
-  <!--Content-->
-
   <div class="content" id="ajax-content">
     <div class="text-intro">
-      <h1>Projects</h1>
-      <p>Please check my portfolio. All project is clean and simplicity modern style. You can buy this template.</p>
+      <h1><%= @project.title %></h1>
+      <div class="one-column">
+        <p><%= @project.subtitle %></p>
+      </div>
+      <div class="two-column">
+        <p><%= @project.description_long %></p>
+      </div>
+      <div class="clear"></div>
+      <br/><br/><br/><br/>
+      <% @project.attachment.each do |image| %>
+        <img src="<%= image.image.url %>" width="100%"><br/><br/><br/><br/>
+      <% end %>
+      <div class="prev-next">
+        <div class="prev-button">
+        <% if @project.prev %>
+        <a class="ajax-link" href="/projects/<%= @project.prev.slug %>">Previous work</a>
+        <% else %>
+        <a class="ajax-link" href="#" onclick='return false' style="opacity: 0.2">Prev work</a>
+        <% end %>
+        </div>
+        <div class="next-button">
+        <% if @project.next %>
+        <a class="ajax-link" href="/projects/<%= @project.next.slug %>">Next work</a>
+        <% else %>
+        <a class="ajax-link" href="#" onclick='return false' style="opacity: 0.2">Next work</a>
+        <% end %>
+        </div>
+      </div>
     </div>
-
-
-  <!--Portfolio grid-->
-  <ul class="portfolio-grid">
-    <% @project.attachment.each do |attachment| %>
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-        <%= image_tag attachment.image.url(:medium) %>
-        <a class="ajax-link" href="/attachments/<%= attachment.id %>">
-          <div class="grid-hover">
-            <h1><%= attachment.title %></h1>
-            <p><%= attachment.description %></p>
-          </div>
-        </a>
-    </li>
-    <% end %>
-  </ul>
-
-</div>
-
-
+  </div>
 
   <!--Home Sidebar-->
 
@@ -80,7 +85,6 @@
       <div class="copyright">© Copyright 2015 Jennifer Wiriawan and Obed Tandadjaja. All rights reserved.</div>
     </div>
   </footer>
-
 
 <% content_for :script do %>
 <!--Scripts-->
