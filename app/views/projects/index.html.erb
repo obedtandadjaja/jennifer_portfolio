@@ -21,14 +21,14 @@
 <div class="container">
 	<div class="row">
 	<% @projects.each do |project| %>
-	<div class="col l4 m6 s12 center tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= project.title %>: <%= project.description_brief %>">
-		<a class="ajax-link" href="/projects/<%= project.slug %>" style="height: inherit; width: inherit; overflow: hidden">
+	<div class="col l4 m6 s12 center tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= project.title %>: <%= project.subtitle %>">
+		<a class="ajax-link" href="/projects/<%= project.slug %>">
 	    	<% if project.attachment.where(is_primary: true).first %>
-	        <%= image_tag project.attachment.where(is_primary: true).first.image.url(:medium) %>
+	        <%= image_tag project.attachment.where(is_primary: true).first.url, style: 'width: 100%' %>
 	        <% elsif project.attachment.first %>
-	        <%= image_tag project.attachment.first.image.url(:medium) %>
+	        <%= image_tag project.attachment.first.url, style: 'width: 100%' %>
 	        <% else %>
-	        <%= image_tag 'portfolio/1.jpg' %>
+	        <%= image_tag 'portfolio/1.jpg', style: 'width: 100%' %>
 	        <% end %>
       	</a>
 	</div>

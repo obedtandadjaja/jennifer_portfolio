@@ -22,8 +22,8 @@
 	<div class="row">
 	<% @attachments.each do |attachment| %>
 	<div class="col l4 m6 s12 center tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= attachment.title %>: <%= attachment.description %>">
-		<a class="ajax-link" href="/attachments/<%= attachment.id %>" style="height: inherit; width: inherit; overflow: hidden">
-	    	<%= image_tag attachment.image.url(:medium) %>
+		<a class="ajax-link" href="/attachments/<%= attachment.id %>">
+	    	<%= image_tag attachment.url, style: 'width: 100%' %>
       	</a>
 	</div>
 	<% end %>

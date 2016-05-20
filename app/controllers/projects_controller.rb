@@ -22,9 +22,12 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.create(project_params)
 		if @project.save
-			if params[:project]['image']
-				params[:project]['image'].each do |image|
-		          	@image = Attachment.create!(project_id: @project.id, image: image)
+			if params[:project]['attachment']
+				params[:project]['attachment'].each do |attachment|
+					if !attachment[1]['url'].empty?
+		          		@attachment = Attachment.create!(project_id: @project.id, title: attachment[1]['title'],
+		          			description: attachment[1]['description'], url: attachment[1]['url'])
+		          	end
 		        end
 	    	end
 			redirect_to :action => :index
@@ -49,9 +52,12 @@ class ProjectsController < ApplicationController
 	    	@project.slug = nil
 	    	# delete all attachments first and then readding them
 	    	@project.attachment.destroy_all
-	    	if params[:project]['image']
-		    	params[:project]['image'].each do |image|
-		          	@image = Attachment.create!(project_id: @project.id, image: image)
+	    	if params[:project]['attachment']
+		    	params[:project]['attachment'].each do |attachment|
+		          	if !attachment[1]['url'].empty?
+		          		@attachment = Attachment.create!(project_id: @project.id, title: attachment[1]['title'],
+		          			description: attachment[1]['description'], url: attachment[1]['url'])
+		          	end
 		        end
 	    	end
 	      	redirect_to :action => 'show', :id => @project
@@ -63,7 +69,7 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:title, :subtitle, :description_brief, :description_long, :user_id, :images)
+		params.require(:project).permit(:title, :subtitle, :description, :user_id, :attachment)
 	end
 
 end

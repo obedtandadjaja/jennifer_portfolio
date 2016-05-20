@@ -19,15 +19,11 @@ ActiveRecord::Schema.define(version: 20160331050011) do
   create_table "attachments", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.boolean  "is_primary",         default: false
+    t.boolean  "is_primary",  default: false
     t.string   "url"
     t.integer  "project_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -46,12 +42,11 @@ ActiveRecord::Schema.define(version: 20160331050011) do
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
-    t.string   "description_brief"
-    t.string   "description_long"
+    t.string   "description"
     t.string   "slug"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

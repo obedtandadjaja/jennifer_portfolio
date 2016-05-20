@@ -3,8 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :title
       t.string :subtitle
-      t.string :description_brief
-      t.string :description_long
+      t.string :description
       t.string :slug, :unique => true
       t.references :user
       t.timestamps null: false

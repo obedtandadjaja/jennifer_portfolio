@@ -22,7 +22,7 @@ class AttachmentsController < ApplicationController
 	end
 
 	def create
-		if params[:attachment]['image']
+		if params[:attachment]['url']
 			@attachment = Attachment.create!(attachment_params)
 			if @attachment.save
 				flash[:success] = "Attachment successfully added!"
@@ -55,6 +55,6 @@ class AttachmentsController < ApplicationController
 
 	private
 	def attachment_params
-		params.require(:attachment).permit(:image, :title, :description, :is_primary, :project_id)
+		params.require(:attachment).permit(:url, :title, :description, :is_primary, :project_id)
 	end
 end

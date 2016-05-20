@@ -21,7 +21,7 @@
   </div>
   <ul class="menu-fullscreen">
     <li><a href="/">Home</a></li>
-    <li><a href="/projects">Projects</a></li>
+    <li><a href="/">Projects</a></li>
     <li><a href="/about-me">About me</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
@@ -50,16 +50,16 @@
       <% @projects.each do |project| %>
       <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
         <% if project.attachment.where(is_primary: true).first %>
-        <%= image_tag project.attachment.where(is_primary: true).first.image.url %>
+        <%= image_tag project.attachment.where(is_primary: true).first.url %>
         <% elsif project.attachment.first %>
-        <%= image_tag project.attachment.first.image.url %>
+        <%= image_tag project.attachment.first.url %>
         <% else %>
         <%= image_tag 'portfolio/1.jpg' %>
         <% end %>
-          <a class="ajax-link" href="single.html">
+          <a class="ajax-link" href="/projects/<%= project.slug %>">
             <div class="grid-hover">
               <h1><%= project.title %></h1>
-              <p><%= project.description_brief %></p>
+              <p><%= project.subtitle %></p>
             </div>
           </a>
       </li>

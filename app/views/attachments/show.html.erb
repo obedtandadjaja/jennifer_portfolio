@@ -3,14 +3,18 @@
 html, body {
 	background-color: #607d8b;
 }
+.btn.black {
+	margin-bottom: 30px;
+}
 </style>
 <% end %>
 
 <div class="container white-text center">
 	<p>Title: <%= @attachment.title ? @attachment.title : "Null" %></p>
-	<%= image_tag @attachment.image.url %>
+	<%= image_tag @attachment.url %>
 	<p>Desc: <%= @attachment.description ? @attachment.description : "Null" %></p>
-	<p>File Name: <%= @attachment.image_file_name %></p>
-	<p>File Size: <%= @attachment.image_file_size %> bytes</p>
-	<p>Content type: <%= @attachment.image_content_type %></p>
+	<p>Project: <%= @attachment.project_id ? Project.find(@attachment.project_id).title : "Currently not associated to any project" %></p>
+	<% if current_user %>
+		<a class="btn black" href="/attachments/<%= @attachment.id %>/edit">Edit information</a>
+	<% end %>
 </div>

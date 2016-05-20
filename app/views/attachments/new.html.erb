@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col m8 s12 offset-m2">
+        <div class="col s12">
             <div class="card">
                 <div class="card-content">
                     <%= form_for @attachment do |f| %>
@@ -15,18 +15,20 @@
                         </div>
 
                         <div class="input-field">
-                            <%= f.check_box :is_primary, class: 'validate' %>
-                            <%= f.label 'is_primary', id: :is_primary %>
-                        </div>
-
-                        <div class="input-field">
                             Project
                             <%= f.collection_select(:project_id, Project.all, :id, :title, {:class => 'validate chosen-select'}) %>
                         </div>
 
                         <div class="input-field">
-                            Images
-                            <%= f.file_field(:image) %>
+                            Image URL
+                            <div class="images">
+                                <%= f.text_field :url, class: 'validate' %>
+                            </div>
+                        </div>
+
+                        <div class="input-field" style="margin-bottom: 30px">
+                            <%= f.check_box :is_primary, class: 'validate' %>
+                            <%= f.label 'Is cover picture?', id: :is_primary %>
                         </div>
 
                         <div class="input-field">

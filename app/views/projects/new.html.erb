@@ -2,10 +2,6 @@
     <div class="row">
         <div class="col l12">
             <div class="card">
-                <div class="card-image">
-                    <img src="/images/card-image.jpg">
-                    <span class="card-title white-text">Add a project</span>
-                </div>
                 <div class="card-content">
                     <%= form_for @project do |f| %>
                         <div class="input-field">
@@ -19,13 +15,8 @@
                         </div>
 
                         <div class="input-field">
-                            Desc Brief
-                            <%= f.text_area :description_brief, class: 'validate' %>
-                        </div>
-
-                        <div class="input-field">
-                            Desc Long
-                            <%= f.text_area :description_long, class: 'validate', style: "height: 10em" %>
+                            Description
+                            <%= f.text_area :description, class: 'validate', style: "height: 10em" %>
                         </div>
 
                         <div class="input-field">
@@ -34,8 +25,14 @@
                         </div>
 
                         <div class="input-field">
-                            Images
-                            <%= f.file_field(:image, :multiple => true) %>
+                            <p>Images</p>
+                            <div class="images">
+                                <div class="container">
+                                    <div class="row">
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn black" id="add_image">Add</a>
                         </div>
 
                         <div class="input-field">
@@ -47,3 +44,15 @@
         </div>
     </div>
 </div>
+
+<% content_for :script do %>
+  <script>
+    $(document).ready(function() {
+        var counter = 0;
+        $('#add_image').click(function() {
+            $('.images .container .row').append('<div class="card" style="margin-bottom: 10px; margin-top: 10px"><div class="card-content"><span class="card-title"><b>Image '+(counter+1)+'</b></span><br>Title<input class="validate" type="text" name="project[attachment]['+counter+'][title]" id="project_attachment"><br>Description<input class="validate" type="text" name="project[attachment]['+counter+'][description]" id="project_attachment"><br>URL<input class="validate" type="text" name="project[attachment]['+counter+'][url]" id="project_attachment"><div class="input-field" style="margin-bottom: 30px"><input name="project[attachment]['+counter+'][is_primary]" type="hidden" value="0"><input class="validate" type="checkbox" value="1" name="project[attachment]['+counter+'][is_primary]" id="project_attachment_is_primary"><label id="project_attachment_is_primary" for="project_attachment_is_primary">Is cover picture?</label></div></div></div>');
+            counter++;
+        });
+    });
+  </script>
+<% end %>
