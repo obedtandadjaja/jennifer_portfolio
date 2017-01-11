@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	def set_admin_page
 		@admin_page = true
 	end
-	
+
 	def show
 		@user = User.where(first_name: "Jennifer").first
 		# render '/home/about_me'
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 		@user = User.where(first_name: "Jennifer").first
 	    if @user.update_attributes(user_params)
 	    	@user.update_attribute(:avatar, params[:user][:avatar])
-	      	redirect_to :action => 'show', :id => @user.slug
+	      redirect_to :action => 'show', :id => @user.id
 	    end
 	end
 
